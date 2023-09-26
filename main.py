@@ -79,7 +79,7 @@ def calcular_segundo_digito_verificador(cpf_base):
 def validar_cpf(cpf):
     cpf = cpf.replace(".", "").replace("-", "")
 
-    if not cpf.isdigit() or len(cpf) != 11:
+    if not cpf.isdigit() or len(cpf) != 11 or len(set(cpf)) == 1:
         return False  
     
     cpf_base = cpf[:9]
@@ -123,6 +123,7 @@ def cadastro_endereco():
     estado = input("Digite a sigla do estado: ")
     endereco += f"Logradouro: {logradouro}, bairro: {bairro}, cidade: {cidade}/{estado}"
     return endereco
+
     
 menu = """
 Selecione uma opção:
@@ -137,6 +138,9 @@ saques_diarios = 3
 extrato = ""
 cpf = ""
 usuarios_cadastrados = []
+conta = 0
+endereco = ""
+
 
 while True:
     exibir_menu()
@@ -174,14 +178,17 @@ while True:
                     print("CPF Inválido")
                 else:
                     data_nascimeto = data_nascimeto()
-                    cadastro_endereco()
-                    
+                    endereco = cadastro_endereco()
+                    conta +=1
                     usuario = {
                         "nome": nome,
                         "cpf": cpf_digitado,
                         "data_nascimeto": data_nascimeto,
-                        "edereco": cadastro_endereco
+                        "edereco": endereco,
+                        "conta": conta,
+                        "agencia": "0001"
                     }
                     usuarios_cadastrados.append(usuario)
+                    print(usuario)
                     print("Usuário cadastrado com sucesso!")
            
