@@ -189,6 +189,5 @@ while True:
                         "agencia": "0001"
                     }
                     usuarios_cadastrados.append(usuario)
-                    print(usuario)
                     print("Usuário cadastrado com sucesso!")
            
